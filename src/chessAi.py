@@ -1,31 +1,3 @@
-'''
-    Keep DEPTH <= 4 for AI to run smoothly.
-
-    DEPTH means the fot will looks depth moves ahead and calculate the best possible move based on PIECE-CAPTURE-SCORE AND PIECE-POSITION SCORE :
-    DEPTH = 4
-'''
-
-
-'''
-
-WAYS TO IMPROVE AI AND MAKE AI FASTER
-
-1) Create a database for initial ai moves/ book openings
-2) AI find possible moves for all the piece after each move, if one piece is moved possible moves for other piece would be same no need to find again
-    In this case new possible move would be :
-        i) if any piece could move to the starting location of piece moved
-        ii) if the piece moved to (x, y) position check if it blocked any piece to move to that location
-3) no need to evaluate all the position again and again use zobrus hashing to save good position and depth
-4) if [ black moved x, white move a, black moved y, white move b ] is sometime same as: 
-      [ black moved y, white move a, black moved x, white move b ]
-      [ black moved x, white move b, black moved y, white move a ]
-      [ black moved y, white move b, black moved y, white move a ]
-5) Teach theories to AI, like some time it is better to capture threat than to move a pawn or take back our piece to previous position rather than attacking
-
-
-'''
-
-
 import random
 import json
 import os
@@ -92,7 +64,7 @@ piecePositionScores = {"N": knightScores, "B": bishopScores, "Q": queenScores,
 
 CHECKMATE = 1000
 STALEMATE = 0
-DEPTH = 6
+DEPTH = 4
 SET_WHITE_AS_BOT = -1
 
 
@@ -617,6 +589,3 @@ def getEnPassantSquare(self):
         row = self.enpassantPossible[0]
         return files[col] + ranks[row]
     return None
-
-# To integrate with your existing code, add these methods to your GameState class
-# and replace the findBestMove function with find_best_move_with_improvements

@@ -9,6 +9,7 @@
         "name": "Stockfish",
         "command": "C:\\Stockfish\\stockfish\\stockfish-windows-x86-64-avx2.exe",
         "protocol": "uci",
-        "workingDirectory": "C:\\Stockfish\\stockfish"
+        "workingDirectory": "C:\\Stockfish\\stockfish",
+        "arguments": ["setoption name Skill Level value 5"] 
     }
 ]

@@ -49,8 +49,8 @@ class GameState():
         self.pins = []
         self.checks = []
         # co-ordinates for square where enpassant is possible
-        self.enpassantPossible = ()  # Thay vì self.enpasantPossible
-        self.enpassantPossibleLog = [self.enpassantPossible]  # Cập nhật tương ứng
+        self.enpassantPossible = ()  
+        self.enpassantPossibleLog = [self.enpassantPossible]
         # castling rights
         self.whiteCastleKingside = True
         self.whiteCastleQueenside = True
@@ -82,7 +82,6 @@ class GameState():
         return None
 
     def getMoveHistory(self):
-        """Lấy lịch sử nước đi ở dạng ký hiệu đại số."""
         return " ".join([move_to_algebraic(move) for move in self.moveLog])
 
 
