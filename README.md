@@ -1,5 +1,5 @@
 # BÀI TẬP LỚN CHESS AI
-![Demo project](https://imgur.com/a/E5wIISN)
+![Demo project](https://i.imgur.com/nwvintW.png)
 
 ## Thành viên nhóm
 
