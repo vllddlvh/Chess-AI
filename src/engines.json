@@ -1,0 +1,14 @@
+[
+    {
+        "name": "MyChessEngine",
+        "command": "\"C:\\Users\\ADMIN\\anaconda3\\python.exe\" \"C:\\Users\\ADMIN\\Chess-AI\\src\\uci.py\"",
+        "protocol": "uci",
+        "workingDirectory": "C:\\Users\\ADMIN\\Chess-AI\\src"
+    },
+    {
+        "name": "Stockfish",
+        "command": "C:\\Stockfish\\stockfish\\stockfish-windows-x86-64-avx2.exe",
+        "protocol": "uci",
+        "workingDirectory": "C:\\Stockfish\\stockfish"
+    }
+]
