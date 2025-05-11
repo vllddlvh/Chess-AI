@@ -11,6 +11,6 @@ def decompress_pgn_zst(input_file, output_file):
         print(f"Error: {e}")
 
 # Thay đổi tên file đầu vào và đầu ra theo nhu cầu
-input_file = 'lichess_db_standard_rated_2023-08.pgn.zst'  # File .pgn.zst của bạn
+input_file = "C:\\Users\\ADMIN\\Downloads\\lichess_db_standard_rated_2014-12.pgn.zst"  # File .pgn.zst của bạn
 output_file = 'output.pgn'  # File PGN đầu ra
 decompress_pgn_zst(input_file, output_file)
