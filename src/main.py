@@ -356,7 +356,7 @@ def main():
 
         drawGameState(screen, gs, validMoves, squareSelected, moveLogFont)
 
-        if COUNT_DRAW == 1:
+        if COUNT_DRAW == 3:
             gameOver = True
             text = 'Draw due to repetition'
             drawEndGameText(screen, text)

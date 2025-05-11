@@ -5,6 +5,7 @@
 
 # Responsible for storing all information about current state of chess game, determining valid move, able to undo moves ...
 
+from chessAi import *
 
 class GameState():
     def __init__(self):
@@ -48,8 +49,8 @@ class GameState():
         self.pins = []
         self.checks = []
         # co-ordinates for square where enpassant is possible
-        self.enpasantPossible = ()
-        self.enpasantPossibleLog = [self.enpasantPossible]
+        self.enpassantPossible = ()  # Thay vì self.enpasantPossible
+        self.enpassantPossibleLog = [self.enpassantPossible]  # Cập nhật tương ứng
         # castling rights
         self.whiteCastleKingside = True
         self.whiteCastleQueenside = True
@@ -57,6 +58,33 @@ class GameState():
         self.blackCastleQueenside = True
         self.castleRightsLog = [castleRights(
             self.whiteCastleKingside, self.whiteCastleQueenside, self.blackCastleKingside, self.blackCastleQueenside)]
+
+    def getCastlingRights(self):
+        """Lấy quyền nhập thành hiện tại."""
+        rights = ""
+        if self.whiteCastleKingside:
+           rights += "K"
+        if self.whiteCastleQueenside:
+           rights += "Q"
+        if self.blackCastleKingside:
+           rights += "k"
+        if self.blackCastleQueenside:
+           rights += "q"
+        return rights if rights else "-"
+
+    def getEnPassantSquare(self):
+        if self.enpassantPossible:
+           files = 'abcdefgh'
+           ranks = '87654321'
+           col = self.enpassantPossible[1]
+           row = self.enpassantPossible[0]
+           return files[col] + ranks[row]
+        return None
+
+    def getMoveHistory(self):
+        """Lấy lịch sử nước đi ở dạng ký hiệu đại số."""
+        return " ".join([move_to_algebraic(move) for move in self.moveLog])
+
 
     def makeMove(self, move):
         self.board[move.startRow][move.startCol] = "--"
@@ -90,11 +118,11 @@ class GameState():
         if move.pieceMoved[1] == 'p' and abs(move.startRow - move.endRow) == 2:
             # valid square will be between (startRow and endRow, endcol or startCol(because opponent's pawn 2 square move is on same col))
             # if we do the average of startRow and endRow it will be valid for both black and white
-            self.enpasantPossible = (
+            self.enpassantPossible = (
                 (move.startRow + move.endRow)//2, move.startCol)
         else:
             # if after opponent move its pawn to second square instead of capturing it with enpassant we played different move then enpassant move will not be possible
-            self.enpasantPossible = ()
+            self.enpassantPossible = ()
 
         # update Log which side castle is possible
         self.updateCastleRights(move)
@@ -102,7 +130,7 @@ class GameState():
             self.whiteCastleKingside, self.whiteCastleQueenside, self.blackCastleKingside, self.blackCastleQueenside))
 
         # update enpasantPossibleLog
-        self.enpasantPossibleLog.append(self.enpasantPossible)
+        self.enpassantPossibleLog.append(self.enpassantPossible)
 
         # castle moves
         if move.castle:
@@ -137,8 +165,8 @@ class GameState():
                 self.board[move.endRow][move.endCol] = "--"
                 self.board[move.startRow][move.endCol] = move.pieceCaptured
 
-            self.enpasantPossibleLog.pop()
-            self.enpasantPossible = self.enpasantPossibleLog[-1]
+            self.enpassantPossibleLog.pop()
+            self.enpassantPossible = self.enpassantPossibleLog[-1]
 
             # give pack castle rights after undo
             self.castleRightsLog.pop()
@@ -347,7 +375,7 @@ class GameState():
                 if self.board[row+moveAmount][col-1][0] == enemyColor:
                     moves.append(
                         Move((row, col), (row+moveAmount, col-1), self.board))
-                if (row+moveAmount, col-1) == self.enpasantPossible:
+                if (row+moveAmount, col-1) == self.enpassantPossible:
                     attackingPiece = blockingPiece = False
                     if kingRow == row:
                         if kingCol < col:  # king is left of the pawn
@@ -378,7 +406,7 @@ class GameState():
                 if self.board[row+moveAmount][col+1][0] == enemyColor:
                     moves.append(
                         Move((row, col), (row+moveAmount, col+1), self.board))
-                if (row+moveAmount, col+1) == self.enpasantPossible:
+                if (row+moveAmount, col+1) == self.enpassantPossible:
                     attackingPiece = blockingPiece = False
                     if kingRow == row:
                         if kingCol < col:  # king is left of the pawn
