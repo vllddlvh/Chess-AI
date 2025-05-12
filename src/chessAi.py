@@ -166,7 +166,7 @@ def scoreBoard(gs):
 # -------------------- OPENING BOOK IMPLEMENTATION --------------------
 
 class OpeningBook:
-    def __init__(self, file_path="opening_book.json"):
+    def __init__(self, file_path="C:\\Users\\ADMIN\\Chess-AI\\src\\opening_book.json"):
         """Initialize an opening book from a JSON file or create a new one."""
         self.file_path = file_path
         self.openings = {}

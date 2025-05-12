@@ -11,7 +11,7 @@ import argparse
 from collections import defaultdict
 
 class PGNtoOpeningBook:
-    def __init__(self, pgn_file="C:\\Users\\ADMIN\\Chess-AI\\output.pgn", opening_book_file="C:\\Users\\ADMIN\\Chess-AI\\opening_book.json", max_moves=10, min_elo=2000):
+    def __init__(self, pgn_file="", opening_book_file="C:\\Users\\ADMIN\\Chess-AI\\opening_book.json", max_moves=200, min_elo=2000):
         self.pgn_file = pgn_file
         self.opening_book_file = opening_book_file
         self.max_moves = max_moves

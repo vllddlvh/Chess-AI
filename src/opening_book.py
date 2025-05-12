@@ -156,7 +156,7 @@ default_openings = {
     ]
 }
 
-with open("opening_book.json", "w") as f:
+with open("C:\\Users\\ADMIN\\Chess-AI\\src\\opening_book.json", "w") as f:
     json.dump(default_openings, f, indent=4)
 
 print("Created extensively expanded opening book")
